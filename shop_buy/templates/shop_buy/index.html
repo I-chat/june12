@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Welcome | June12.net</title>
+		<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'shop_buy/style.css' %}" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </head>
+	<body>
+			<nav class="navbar navbar-inverse">
+			    <div class="container-fluid">
+				    <div class="navbar-header">
+					    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						    <span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+			            <a class="navbar-brand" id="link" href="/shop_buy/">June12.net</a>
+						<form class="navbar-form" role="search">
+						<div class="form-group">
+						    <div class="col-xs-12">
+			                    <input class="form-control" id="inputdefault" name="srch-term" placeholder="Search for products, brands and categories" type="text"></input>
+							</div>
+							<div class="input-group-btn">
+			                    <button class="btn btn-warning input-btn" type="button"><i class="glyphicon glyphicon-search"></i></button>
+						    </div>
+						</div>
+						</form>
+			        </div>
+				</div>	
+			</nav>
+		
+		{% if latest_product_list %}
+	    <div class="post">
+            <ul>
+                {% for product in latest_product_list %}
+                    <li><a href="{% url 'shop_buy:details' product.id %}">{{ product.product_name }} <br/> <img src="/shop_buy/media/{{ product.product_image }}/" width="90" height="90" alt="HTML Dog"> <br/>{{product.pub_date}}</a></li><br/>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No products are available.</p>
+		</div>
+        {% endif %}
+</html>

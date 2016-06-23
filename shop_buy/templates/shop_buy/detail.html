@@ -1,0 +1,10 @@
+<h1>{{ product.product_name }}</h1>
+<img src="/shop_buy/media/{{ product.product_image }}/" width="120" height="90" alt="HTML Dog">
+<p>{{product.pub_date}}</p>
+<p>{{product.product_desc|truncatewords:6}}
+<p>{{product.product_price}}
+
+
+{% if user == product.created_by %}
+    <a href="{% url 'shop_buy:proupdate' product.id %}">Edit Product</a>
+{% endif %}

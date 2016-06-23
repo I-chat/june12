@@ -1,0 +1,17 @@
+<h1>{{ user_object.username }}</h1>
+<h1>{{ user_object.email }}</h1>
+<img src="/shop_buy/media/{{ user_object.profile.profile_picture }}/" width="120" height="90" alt="HTML Dog">
+<p>{{user_object.profile.location}}
+<p>{{user_object.profile.gender}}
+<br/>
+<a href="{% url 'update' %}">Edit Profile</a>
+
+{% if product %}
+    <ul>
+    {% for prod in product %}
+        <li><a href="{% url 'shop_buy:details' prod.id %}">{{ prod.product_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No products are available.</p>
+{% endif %}
